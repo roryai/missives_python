@@ -3,7 +3,7 @@ import datetime
 
 
 def test_missive_output_format(capsys):
-    missive = Missive("Rory", "Hello there", datetime.datetime(2023, 4, 20, 8, 45, 20, 56178))
+    missive = Missive(name="Rory", message="Hello there", creation_time=datetime.datetime(2023, 4, 20, 8, 45, 20, 56178))
     missive.display_missive()
     captured = capsys.readouterr()
 
@@ -12,5 +12,3 @@ def test_missive_output_format(capsys):
                            "British Isles, England, London" \
                            "\nScribe: Rory" \
                            "\nMissive: Hello there\n"
-
-
