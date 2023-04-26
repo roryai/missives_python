@@ -1,6 +1,7 @@
 from missive import Missive
 import random
 
+
 class Controller:
 
     def __init__(self):
