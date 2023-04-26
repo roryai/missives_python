@@ -15,53 +15,41 @@ class MissiveGateway:
          );
          """
 
-    def insert_missive_statement(self, missive):
-        return f"""
+    def insert_missive(self, missive):
+        statement = f"""
          INSERT INTO
              missives (name, message, creation_time, location)
          VALUES
              ('{missive.name}', '{missive.message}', '{missive.creation_time}', '{missive.location}');
          """
-
-    def select_one_random_missive_statement(self):
-        return """
-         SELECT * FROM missives WHERE id IN (SELECT id FROM missives ORDER BY RANDOM() LIMIT 1);
-         """
-
-    def select_missive_by_name_statement(self, name):
-        return f"""
-         SELECT * FROM missives WHERE name = '{name}';
-         """
-
-    def delete_all_records_statement(self):
-        return """
-         DELETE FROM missives;
-         """
-
-    def count_missives_statement(self):
-        return """
-         SELECT COUNT(*) FROM missives;
-         """
-
-    def select_all_missives_statement(self):
-        return """
-        SELECT * FROM missives;
-        """
-
-    def insert_missive(self, missive):
-        self.db_controller.execute_query(self.insert_missive_statement(missive))
+        self.db_controller.execute_query(statement)
 
     def select_one_random_missive(self):
-        return self.db_controller.execute_read_query(self.select_one_random_missive_statement())[0]
+        statement = """
+         SELECT * FROM missives WHERE id IN (SELECT id FROM missives ORDER BY RANDOM() LIMIT 1);
+         """
+        return self.db_controller.execute_read_query(statement)[0]
 
     def select_missive_by_name(self, name):
-        return self.db_controller.execute_read_query(self.select_missive_by_name_statement(name))[0]
+        statement = f"""
+         SELECT * FROM missives WHERE name = '{name}';
+         """
+        return self.db_controller.execute_read_query(statement)[0]
 
     def delete_all_missives(self):
-        self.db_controller.execute_query(self.delete_all_records_statement())
+        statement = """
+         DELETE FROM missives;
+         """
+        self.db_controller.execute_query(statement)
 
     def count_missives(self):
-        return self.db_controller.execute_read_query(self.count_missives_statement())[0][0]
+        statement = """
+         SELECT COUNT(*) FROM missives;
+         """
+        return self.db_controller.execute_read_query(statement)[0][0]
 
     def select_all_missives(self):
-        return self.db_controller.execute_read_query(self.select_all_missives_statement())
+        statement = """
+        SELECT * FROM missives;
+        """
+        return self.db_controller.execute_read_query(statement)
