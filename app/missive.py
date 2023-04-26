@@ -7,7 +7,7 @@ class Missive:
                  name,
                  message,
                  creation_time=None,
-                 location="",
+                 location=""
                  ):
         self.name = name
         self.message = message
