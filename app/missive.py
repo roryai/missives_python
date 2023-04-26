@@ -14,6 +14,13 @@ class Missive:
         self.creation_time = self.creation_time(creation_time)
         self.location = self.location(location)
 
+    @classmethod
+    def init_from_record(cls, record):
+        return Missive(name=record[1],
+                       message=record[2],
+                       creation_time=datetime.strptime(record[3], '%Y-%m-%d %H:%M:%S.%f'),
+                       location=record[4])
+
     def creation_time(self, time):
         if time:
             return time

@@ -10,21 +10,10 @@ if __name__ == '__main__':
     # create and insert one test missive
     missive = Missive(name="Rory",
                       message="Hello there",
-                      creation_time=datetime(2023, 4, 20, 8, 45, 20, 56178)
-                      )
+                      creation_time=datetime(2023, 4, 20, 8, 45, 20, 56178))
     missive_gateway.insert_missive(missive)
 
-    # select random missive and map db data to Missive
+    # select, construct and display random missive
     missive_record = missive_gateway.select_one_random_missive()
-    name = missive_record[1]
-    message = missive_record[2]
-    creation_time = missive_record[3]
-    location = missive_record[4]
-
-    missive = Missive(name=name,
-                      message=message,
-                      creation_time=datetime.strptime(creation_time, '%Y-%m-%d %H:%M:%S.%f'),
-                      location=location
-                      )
-
+    missive = Missive.init_from_record(missive_record)
     missive.display_missive()
