@@ -7,7 +7,7 @@ class Missive:
                  name,
                  message,
                  creation_time=None,
-                 location=""
+                 location=None
                  ):
         self.name = name
         self.message = message
@@ -25,7 +25,7 @@ class Missive:
         if time:
             return time
         else:
-            datetime.now()
+            return datetime.now()
 
     def location(self, location):
         if location:
