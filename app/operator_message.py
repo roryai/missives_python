@@ -1,47 +1,37 @@
-class OperatorMessages:
+class OperatorMessage:
+
+    def __init__(self, method):
+        self.pad()
+        getattr(self, method)()
+        self.pad()
 
     def pad(self):
         print()
 
     def read_write_learn(self):
-        self.pad()
         print('Would you like to write a missive, read a missive, or learn more about this'
               ' time machine?')
         print("Type 'w' to write, 'r' to read, or 'l' to learn more, then hit enter.")
-        self.pad()
 
     def what_is_your_name(self):
-        self.pad()
         print('What is your name?')
-        self.pad()
 
     def what_is_your_message(self):
-        self.pad()
         print('What message would you like to send to the future?')
-        self.pad()
 
     def input_not_recognised(self):
-        self.pad()
         print("Input not recognised, please try again.")
-        self.pad()
 
     def name_only_letters(self):
-        self.pad()
         print("Name must consist of only letters.")
-        self.pad()
 
     def message_too_short(self):
-        self.pad()
         print("Your message is too short to be recorded. Please enter another message.")
-        self.pad()
 
     def missive_recorded(self):
-        self.pad()
         print("Your missive has been added to the temporal archive, thank you.")
-        self.pad()
 
     def time_machine_info(self):
-        self.pad()
         print("""
     This is a time machine that allows you to send messages to people in the future.
     
@@ -63,4 +53,3 @@ class OperatorMessages:
     
     We do not know who else may be reading your messages.
         """)
-        self.pad()
