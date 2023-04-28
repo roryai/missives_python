@@ -40,16 +40,14 @@ class Controller:
             return name
         else:
             OperatorMessage('name_only_letters')
-            self.get_name()
+            return self.get_name()
 
     def get_message(self):
         OperatorMessage('what_is_your_message')
         message = input()
         if len(message) < 10:
             OperatorMessage('message_too_short')
-            # bug: if this loops new input isn't recorded. only 1st input ever returned
-            # can't be recursive
-            self.get_message()
+            return self.get_message()
         return message
 
     def display_random_missive(self):
