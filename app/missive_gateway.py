@@ -17,12 +17,13 @@ class MissiveGateway:
 
     def insert_missive(self, missive):
         statement = f"""
-         INSERT INTO
-             missives (name, message, creation_time, location)
-         VALUES
-             ('{missive.name}', '{missive.message}', '{missive.creation_time}', '{missive.location}');
+        INSERT INTO
+            missives (name, message, creation_time, location)
+        VALUES
+            (?, ?, ?, ?);
          """
-        self.db_controller.execute_query(statement)
+        values = [missive.name, missive.message, missive.creation_time, missive.location]
+        self.db_controller.execute_query(statement, values)
 
     def select_one_random_missive(self):
         statement = """
@@ -40,7 +41,7 @@ class MissiveGateway:
         statement = """
          DELETE FROM missives;
          """
-        self.db_controller.execute_query(statement)
+        self.db_controller.execute_query(statement, [])
 
     def count_missives(self):
         statement = """

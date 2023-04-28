@@ -7,7 +7,7 @@ class DatabaseController:
     def __init__(self, table_init_statement=None, path="/Users/rory/code/missives_python/missives.db"):
         self.connection = self.connect_to_db(path)
         if table_init_statement:
-            self.execute_query(table_init_statement)
+            self.execute_query(table_init_statement, [])
 
     def connect_to_db(self, path):
         connection = None
@@ -18,10 +18,10 @@ class DatabaseController:
 
         return connection
 
-    def execute_query(self, query):
+    def execute_query(self, query, values):
         cursor = self.connection.cursor()
         try:
-            cursor.execute(query)
+            cursor.execute(query, values)
             self.connection.commit()
         except Error as e:
             print(f"Error '{e}' occurred with query")
