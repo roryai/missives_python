@@ -128,5 +128,4 @@ dmypy.json
 .pyre/
 
 # Database
-missives.db
-missives_test.db
+*.db
