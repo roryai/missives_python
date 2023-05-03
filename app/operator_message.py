@@ -1,38 +1,54 @@
+from time import sleep
+
+
 class OperatorMessage:
 
-    def __init__(self, method):
-        self.pad()
-        getattr(self, method)()
-        self.pad()
+    def __init__(self, command):
+        self.pad = "\n"
+        print(self.pad)
+        self.print_char_by_char(self.selector(command))
+        print(self.pad)
 
-    def pad(self):
-        print()
+    def print_char_by_char(self, string):
+        for c in string:
+            print(c, end='', flush=True)
+            sleep(0.01)
 
-    def read_write_learn(self):
-        print('Would you like to write a missive, read a missive, or learn more about this'
-              ' time machine?')
-        print("Type 'w' to write, 'r' to read, or 'l' to learn more, then hit enter.")
+    def selector(self, command):
+        match command:
+            case 'read_write_learn':
+                return "Would you like to write a missive, read a missive, or learn more about this time machine?\n" \
+                 "Type 'w' to write, 'r' to read, or 'l' to learn more, then hit enter."
 
-    def what_is_your_name(self):
-        print('What is your name?')
+            case 'what_is_your_name':
+                return 'What is your name?'
 
-    def what_is_your_message(self):
-        print('What message would you like to send to the future?')
+            case 'what_is_your_message':
+                return 'What message would you like to send to the future?'
 
-    def input_not_recognised(self):
-        print("Input not recognised, please try again.")
+            case 'input_not_recognised':
+                return 'Input not recognised, please try again.'
 
-    def name_only_letters(self):
-        print("Name must consist of only letters.")
+            case 'name_only_letters':
+                return 'Name must consist of only letters.'
 
-    def message_too_short(self):
-        print("Your message is too short to be recorded. Please enter another message.")
+            case 'message_too_short':
+                return 'Your message is too short to be recorded. Please enter another message.'
 
-    def missive_recorded(self):
-        print("Your missive has been added to the temporal archive, thank you.")
+            case 'missive_recorded':
+                return 'Your missive has been added to the temporal archive, thank you.'
+
+            case 'enter_to_continue':
+                return 'Hit enter to continue.'
+
+            case 'display_another_missive_or_continue':
+                return "Enter 'r' to read another missive, or hit enter to continue"
+
+            case 'time_machine_info':
+                return self.time_machine_info()
 
     def time_machine_info(self):
-        print("""
+        return """
     This is a time machine that allows you to send messages to people in the future.
     
     It was discovered aboard the wreck of the Mary Celeste, in a centuries-old air pocket.
@@ -52,4 +68,4 @@ class OperatorMessage:
     of the creators.
     
     We do not know who else may be reading your messages.
-        """)
+        """
