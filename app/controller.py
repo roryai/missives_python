@@ -13,8 +13,7 @@ class Controller:
 
     def flow_menu(self, error_message=None):
         self.pre_flow(error_message)
-        user_input = input()
-        match user_input:
+        match input():
             case 'w':
                 self.get_input()
             case 'r':
@@ -61,9 +60,9 @@ class Controller:
         self.enter_to_continue()
 
     def display_random_missive(self):
-        self.clear_terminal_window()
         record = self.missive_gateway.select_one_random_missive()
         missive = Missive.init_from_record(record)
+        self.clear_terminal_window()
         missive.display_missive()
         self.display_another_missive_or_continue()
 
