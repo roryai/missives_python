@@ -1,30 +1,13 @@
-from time import sleep
-from rich import print
-
-CYAN = "#00ffff"
-MAGENTA = "#ff00ff"
-YELLOW = "#ffff00"
-PURPLE = "#af00ff"
-GREEN = "#00ff00"
-DEFAULT_COLOUR = CYAN
-HIGHLIGHT_COLOUR = MAGENTA
-
+import colours
+from printer import Printer
 
 class OperatorMessage:
 
-    def __init__(self, command):
+    def __init__(self, command, printer=Printer()):
         self.pad = "\n"
         print(self.pad)
-        self.print_char_by_char(self.selector(command))
+        printer.print_char_by_char(self.selector(command))
         print(self.pad)
-
-    def print_char_by_char(self, specification):
-        for x in specification:
-            message = x[0]
-            colour = x[1]
-            for char in message:
-                print(f"[bold {colour}]{char}[/bold {colour}]", end='', flush=True)
-                sleep(0.003)
 
     def selector(self, command):
         match command:
@@ -32,22 +15,22 @@ class OperatorMessage:
                 return self.read_write_learn()
 
             case 'what_is_your_name':
-                return [('What is your name?', DEFAULT_COLOUR)]
+                return [('What is your name?', colours.DEFAULT_COLOUR)]
 
             case 'what_is_your_message':
-                return [('What message would you like to send to the future?', DEFAULT_COLOUR)]
+                return [('What message would you like to send to the future?', colours.DEFAULT_COLOUR)]
 
             case 'input_not_recognised':
-                return [('⚠️ Input not recognised, please try again. ⚠️', YELLOW)]
+                return [('⚠️ Input not recognised, please try again. ⚠️', colours.YELLOW)]
 
             case 'name_only_letters':
-                return [('⚠️ Name must consist of only letters. ⚠️', YELLOW)]
+                return [('⚠️ Name must consist of only letters. ⚠️', colours.YELLOW)]
 
             case 'message_too_short':
-                return [('⚠️ Your message is too short to be recorded. Please enter another message. ⚠️', YELLOW)]
+                return [('⚠️ Your message is too short to be recorded. Please enter another message. ⚠️', colours.YELLOW)]
 
             case 'missive_recorded':
-                return [('Your missive has been added to the temporal archive, thank you.', MAGENTA)]
+                return [('Your missive has been added to the temporal archive, thank you.', colours.MAGENTA)]
 
             case 'enter_to_continue':
                 return self.hit_enter_to_continue()
@@ -60,32 +43,32 @@ class OperatorMessage:
 
     def read_write_learn(self):
         return [
-            ("Would you like to write a missive, read a missive, or learn more about this time machine?", GREEN),
-            ("\nType",                          DEFAULT_COLOUR),
-            (" w",                              HIGHLIGHT_COLOUR),
-            (" to write,",                      DEFAULT_COLOUR),
-            (" r",                              HIGHLIGHT_COLOUR),
-            (" to read, or",                    DEFAULT_COLOUR),
-            (" l",                              HIGHLIGHT_COLOUR),
-            (" to learn more, then hit",        DEFAULT_COLOUR),
-            (" enter",                          HIGHLIGHT_COLOUR),
-            (".",                               DEFAULT_COLOUR),
+            ("Would you like to write a missive, read a missive, or learn more about this time machine?", colours.GREEN),
+            ("\nType",                          colours.DEFAULT_COLOUR),
+            (" w",                              colours.HIGHLIGHT_COLOUR),
+            (" to write,",                      colours.DEFAULT_COLOUR),
+            (" r",                              colours.HIGHLIGHT_COLOUR),
+            (" to read, or",                    colours.DEFAULT_COLOUR),
+            (" l",                              colours.HIGHLIGHT_COLOUR),
+            (" to learn more, then hit",        colours.DEFAULT_COLOUR),
+            (" enter",                          colours.HIGHLIGHT_COLOUR),
+            (".",                               colours.DEFAULT_COLOUR),
         ]
 
     def hit_enter_to_continue(self):
         return [
-            ('Hit',             DEFAULT_COLOUR),
-            (' enter',          HIGHLIGHT_COLOUR),
-            (' to continue.',   DEFAULT_COLOUR)
+            ('Hit',             colours.DEFAULT_COLOUR),
+            (' enter',          colours.HIGHLIGHT_COLOUR),
+            (' to continue.',   colours.DEFAULT_COLOUR)
         ]
 
     def display_another_missive_or_continue(self):
         return [
-            ("Enter",                                   DEFAULT_COLOUR),
-            (" r",                                      HIGHLIGHT_COLOUR),
-            (" to read another missive, or hit",        DEFAULT_COLOUR),
-            (" enter",                                  HIGHLIGHT_COLOUR),
-            (" to continue.",                           DEFAULT_COLOUR)
+            ("Enter",                                   colours.DEFAULT_COLOUR),
+            (" r",                                      colours.HIGHLIGHT_COLOUR),
+            (" to read another missive, or hit",        colours.DEFAULT_COLOUR),
+            (" enter",                                  colours.HIGHLIGHT_COLOUR),
+            (" to continue.",                           colours.DEFAULT_COLOUR)
         ]
 
     def time_machine_info(self):
@@ -109,4 +92,4 @@ class OperatorMessage:
     of the creators.
     
     We do not know who else may be reading your messages.
-        """, PURPLE)]
+        """, colours.PURPLE)]
