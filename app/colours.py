@@ -1,7 +1,7 @@
 CYAN = '#00ffff'
 MAGENTA = '#ff55ff'
 YELLOW = '#ffff00'
-PURPLE = '#9966ff'
+PURPLE = '#bb33ff'
 GREEN = '#00ff00'
 RED = '#ff0000'
 ORANGE = '#ffa400'

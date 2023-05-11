@@ -82,7 +82,7 @@ class Controller:
 
     def display_another_missive_or_continue(self):
         OperatorMessage('display_another_missive_or_continue')
-        if input(INPUT_PROMPT) == 'r':
+        if input() == 'r':
             self.display_random_missive()
         else:
             self.flow_menu()

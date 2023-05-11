@@ -28,14 +28,14 @@ class Missive:
                        location=record[4])
 
     def format_creation_time(self):
-        return self.creation_time.strftime("%a, %d %b %Y %H:%M:%S")
+        return self.creation_time.strftime("%a, %d %b %Y %H:%M")
 
     def format_location(self):
         return f"Milky Way, Sol, Earth, {self.location}"
 
     def display_missive(self):
         return self.printer.process([
-            ("\nTime recorded:      ",           colours.WHITE),
+            ("\nTime recorded:      ",      colours.WHITE),
             (self.format_creation_time(),   colours.YELLOW),
             ("\nRecording location: ",      colours.WHITE),
             (self.format_location(),        colours.YELLOW),

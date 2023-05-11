@@ -22,7 +22,7 @@ class OperatorMessage:
                 return [('⚠️ Input not recognised, please try again. ⚠️', colours.YELLOW)]
 
             case 'name_only_letters':
-                return [('⚠️ Name must consist of only letters. ⚠️', colours.YELLOW)]
+                return [('⚠️ Name must consist only of letters. ⚠️', colours.YELLOW)]
 
             case 'message_too_short':
                 return [('⚠️ Your message is too short to be recorded. Please enter another message. ⚠️', colours.YELLOW)]
@@ -65,19 +65,22 @@ class OperatorMessage:
         return [
             ('\n\nType',                                colours.DEFAULT_COLOUR),
             (' r',                                      colours.HIGHLIGHT_COLOUR),
+            (' then hit',                               colours.DEFAULT_COLOUR),
+            (' enter',                                  colours.HIGHLIGHT_COLOUR),
             (' to read another missive, or hit',        colours.DEFAULT_COLOUR),
             (' enter',                                  colours.HIGHLIGHT_COLOUR),
-            (' to continue.',                           colours.DEFAULT_COLOUR)
+            (' to return to menu.',                     colours.DEFAULT_COLOUR)
         ]
 
     def time_machine_info(self):
         return [("""
     This is a time machine that allows you to send messages to people in the future.
     
-    It was discovered aboard the wreck of the Mary Celeste, in a centuries-old air pocket.
-    The machine was operational and running.
+    It was discovered aboard the wreck of the Mary Celeste, in the captain's cabin.
     
-    It is made of exotic materials, some of which were unknown to science until the discovery.
+    The machine was operational and running at the time of discovery.
+    
+    It is made of exotic materials, some of which were previously unknown to science.
     
     Messages can be recorded by many means, including using a pen or stylus.
     A keyboard has been deemed to be the most desirable interface for 21st century 
@@ -87,8 +90,8 @@ class OperatorMessage:
     records the intent of the user as expressed through the choices they make about
     which keys to press. When a robot presses the keys nothing happens.
     
-    The mechanism by which this machine operates is unknown, as is the origin or identity
-    of the creators.
+    The mechanism by which this machine operates is unknown, as is the origin or 
+    identity of the creators.
     
     We do not know who else may be reading your messages.
         """, colours.PURPLE, 0.004)]
