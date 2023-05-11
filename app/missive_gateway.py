@@ -28,26 +28,26 @@ class MissiveGateway:
 
     def select_one_random_missive(self):
         statement = """
-         SELECT * FROM missives WHERE id IN (SELECT id FROM missives ORDER BY RANDOM() LIMIT 1);
-         """
+        SELECT * FROM missives WHERE id IN (SELECT id FROM missives ORDER BY RANDOM() LIMIT 1);
+        """  # TODO: handle case where no record is found
         return self.db_controller.execute_read_query(statement)[0]
 
     def select_missive_by_name(self, name):
         statement = f"""
-         SELECT * FROM missives WHERE name = '{name}';
-         """
+        SELECT * FROM missives WHERE name = '{name}';
+        """
         return self.db_controller.execute_read_query(statement)[0]
 
     def delete_all_missives(self):
         statement = """
-         DELETE FROM missives;
-         """
+        DELETE FROM missives;
+        """
         self.db_controller.execute_query(statement, [])
 
     def count_missives(self):
         statement = """
-         SELECT COUNT(*) FROM missives;
-         """
+        SELECT COUNT(*) FROM missives;
+        """
         return self.db_controller.execute_read_query(statement)[0][0]
 
     def select_all_missives(self):
