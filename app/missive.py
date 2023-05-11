@@ -1,4 +1,6 @@
 from datetime import datetime
+from printer import Printer
+import colours
 
 
 class Missive:
@@ -6,13 +8,15 @@ class Missive:
     def __init__(self,
                  name,
                  message,
-                 creation_time=None,
-                 location=None
+                 creation_time=datetime.now(),
+                 location="British Isles, England, London",
+                 printer=Printer()
                  ):
         self.name = name
         self.message = message
-        self.creation_time = self.creation_time(creation_time)
-        self.location = self.location(location)
+        self.creation_time = creation_time
+        self.location = location
+        self.printer = printer
 
     @classmethod
     def init_from_record(cls, record):
@@ -21,18 +25,6 @@ class Missive:
                        creation_time=datetime.strptime(record[3], '%Y-%m-%d %H:%M:%S.%f'),
                        location=record[4])
 
-    def creation_time(self, time):
-        if time:
-            return time
-        else:
-            return datetime.now()
-
-    def location(self, location):
-        if location:
-            return location
-        else:
-            return "British Isles, England, London"
-
     def format_creation_time(self):
         return self.creation_time.strftime("%a, %d %b %Y %H:%M:%S")
 
@@ -40,8 +32,13 @@ class Missive:
         return f"Milky Way, Sol, Earth, {self.location}"
 
     def display_missive(self):
-        print()
-        print(f"Time recorded: {self.format_creation_time()}")
-        print(f"Recording location: {self.format_location()}")
-        print(f"Scribe: {self.name}")
-        print(f"Missive: {self.message}")
+        return self.printer.process([
+            ("\nTime recorded:      ",           colours.WHITE),
+            (self.format_creation_time(),   colours.YELLOW),
+            ("\nRecording location: ",      colours.WHITE),
+            (self.format_location(),        colours.YELLOW),
+            ("\n\nScribe:  ",               colours.WHITE),
+            (self.name,                     colours.MAGENTA),
+            ("\nMissive: ",                 colours.WHITE),
+            (self.message,                  colours.CYAN)
+        ])
