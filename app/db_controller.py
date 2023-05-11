@@ -14,7 +14,7 @@ class DatabaseController:
         try:
             connection = sqlite3.connect(path)
         except Error as e:
-            print(f"Error '{e}' occurred with database connection")
+            print(f"Error '{e}' occurred with database connection. Path: {path}")
 
         return connection
 
@@ -24,7 +24,7 @@ class DatabaseController:
             cursor.execute(query, values)
             self.connection.commit()
         except Error as e:
-            print(f"Error '{e}' occurred with query")
+            print(f"Error '{e}' occurred with \nQuery {query}\nValues: {values}")
 
     def execute_read_query(self, query):
         cursor = self.connection.cursor()
@@ -34,5 +34,5 @@ class DatabaseController:
             result = cursor.fetchall()
             return result
         except Error as e:
-            print(f"Error '{e}' occurred with read query")
+            print(f"Error '{e}' occurred with read query: {query}")
         return result
