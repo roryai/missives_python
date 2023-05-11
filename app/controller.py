@@ -17,7 +17,8 @@ class Controller:
         self.pre_flow(error_message)
         match input(INPUT_PROMPT):
             case 'w':
-                self.get_input()
+                missive = self.get_input()
+                self.record_missive(missive)
             case 'r':
                 self.display_random_missive()
             case 'l':
@@ -35,7 +36,18 @@ class Controller:
     def get_input(self):
         name = self.get_name()
         message = self.get_message()
-        self.record_missive(name, message)
+        return self.confirm_submission(name, message)
+
+    def confirm_submission(self, name, message):
+        OperatorMessage('confirm_submission')
+        confirmation = input(INPUT_PROMPT)
+        if confirmation == 'y':
+            return Missive(name, message)
+        elif confirmation == 'n':
+            return self.get_input()
+        else:
+            OperatorMessage('input_not_recognised')
+            return self.confirm_submission(name, message)
 
     def get_name(self):
         OperatorMessage('what_is_your_name')
@@ -55,10 +67,9 @@ class Controller:
             return self.get_message()
         return message
 
-    def record_missive(self, name, message):
-        missive = Missive(name, message)
+    def record_missive(self, missive):
         self.missive_gateway.insert_missive(missive)
-        OperatorMessage('missive_recorded')
+        OperatorMessage('missive_recorded')  # TODO make this dependent on success
         self.enter_to_continue()
 
     def display_random_missive(self):
