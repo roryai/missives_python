@@ -4,6 +4,8 @@ from operator_message import OperatorMessage
 from db_controller import DatabaseController
 import re
 
+INPUT_PROMPT = '-> '
+
 
 class Controller:
 
@@ -13,7 +15,7 @@ class Controller:
 
     def flow_menu(self, error_message=None):
         self.pre_flow(error_message)
-        match input():
+        match input(INPUT_PROMPT):
             case 'w':
                 self.get_input()
             case 'r':
@@ -37,7 +39,7 @@ class Controller:
 
     def get_name(self):
         OperatorMessage('what_is_your_name')
-        name = input()
+        name = input(INPUT_PROMPT)
         # two or more letters only of any case
         if re.search("^[a-zA-Z]{2,}$", name):
             return name
@@ -47,7 +49,7 @@ class Controller:
 
     def get_message(self):
         OperatorMessage('what_is_your_message')
-        message = input()
+        message = input(INPUT_PROMPT)
         if len(message) < 10:
             OperatorMessage('message_too_short')
             return self.get_message()
@@ -80,7 +82,7 @@ class Controller:
 
     def display_another_missive_or_continue(self):
         OperatorMessage('display_another_missive_or_continue')
-        if input() == 'r':
+        if input(INPUT_PROMPT) == 'r':
             self.display_random_missive()
         else:
             self.flow_menu()
