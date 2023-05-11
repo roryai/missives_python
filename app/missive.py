@@ -8,14 +8,14 @@ class Missive:
     def __init__(self,
                  name,
                  message,
-                 creation_time=datetime.now(),
+                 creation_time=None,
                  location="British Isles, England, London",
                  gathering="Burning Nest '23",
                  printer=Printer()
                  ):
         self.name = name
         self.message = message
-        self.creation_time = creation_time
+        self.creation_time = creation_time or datetime.now()
         self.location = location
         self.gathering = gathering
         self.printer = printer
