@@ -18,6 +18,9 @@ class OperatorMessage:
             case 'what_is_your_message':
                 return [('What message would you like to send to the future?', colours.DEFAULT_COLOUR)]
 
+            case 'confirm_submission':
+                return self.confirm_submission()
+
             case 'input_not_recognised':
                 return [('⚠️ Input not recognised, please try again. ⚠️', colours.YELLOW)]
 
@@ -52,6 +55,20 @@ class OperatorMessage:
             (' to learn more, then hit',        colours.DEFAULT_COLOUR),
             (' enter',                          colours.HIGHLIGHT_COLOUR),
             ('.',                               colours.DEFAULT_COLOUR)
+        ]
+
+    def confirm_submission(self):
+        return [
+            ('Would you like to submit your message, or start again?', colours.DEFAULT_COLOUR),
+            ('\nType', colours.DEFAULT_COLOUR),
+            (' y', colours.HIGHLIGHT_COLOUR),
+            (' then hit', colours.DEFAULT_COLOUR),
+            (' enter', colours.HIGHLIGHT_COLOUR),
+            (' to submit your missive, or type', colours.DEFAULT_COLOUR),
+            (' n', colours.HIGHLIGHT_COLOUR),
+            (' then hit', colours.DEFAULT_COLOUR),
+            (' enter', colours.HIGHLIGHT_COLOUR),
+            (' to start again.', colours.DEFAULT_COLOUR)
         ]
 
     def hit_enter_to_continue(self):
