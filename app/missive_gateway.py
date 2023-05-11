@@ -11,18 +11,19 @@ class MissiveGateway:
              name TEXT NOT NULL,
              message TEXT NOT NULL,
              creation_time INTEGER,
-             location TEXT NOT NULL
+             location TEXT NOT NULL,
+             gathering TEXT NOT NULL
          );
          """
 
     def insert_missive(self, missive):
         statement = f"""
         INSERT INTO
-            missives (name, message, creation_time, location)
+            missives (name, message, creation_time, location, gathering)
         VALUES
-            (?, ?, ?, ?);
+            (?, ?, ?, ?, ?);
          """
-        values = [missive.name, missive.message, missive.creation_time, missive.location]
+        values = [missive.name, missive.message, missive.creation_time, missive.location, missive.gathering]
         self.db_controller.execute_query(statement, values)
 
     def select_one_random_missive(self):

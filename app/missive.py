@@ -10,12 +10,14 @@ class Missive:
                  message,
                  creation_time=datetime.now(),
                  location="British Isles, England, London",
+                 gathering="Burning Nest '23",
                  printer=Printer()
                  ):
         self.name = name
         self.message = message
         self.creation_time = creation_time
         self.location = location
+        self.gathering = gathering
         self.printer = printer
 
     @classmethod
@@ -37,6 +39,8 @@ class Missive:
             (self.format_creation_time(),   colours.YELLOW),
             ("\nRecording location: ",      colours.WHITE),
             (self.format_location(),        colours.YELLOW),
+            ("\nGathering:          ",      colours.WHITE),
+            (self.gathering,                colours.YELLOW),
             ("\n\nScribe:  ",               colours.WHITE),
             (self.name,                     colours.MAGENTA),
             ("\nMissive: ",                 colours.WHITE),
