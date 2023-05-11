@@ -1,13 +1,11 @@
 import colours
 from printer import Printer
 
+
 class OperatorMessage:
 
     def __init__(self, command, printer=Printer()):
-        self.pad = "\n"
-        print(self.pad)
-        printer.print_char_by_char(self.selector(command))
-        print(self.pad)
+        printer.process(self.selector(command))
 
     def selector(self, command):
         match command:
@@ -43,7 +41,8 @@ class OperatorMessage:
 
     def read_write_learn(self):
         return [
-            ("Would you like to write a missive, read a missive, or learn more about this time machine?", colours.GREEN),
+            ("Would you like to write a missive, read a missive, or learn more about this time machine?",
+                colours.GREEN, 0.004),
             ("\nType",                          colours.DEFAULT_COLOUR),
             (" w",                              colours.HIGHLIGHT_COLOUR),
             (" to write,",                      colours.DEFAULT_COLOUR),
@@ -52,7 +51,7 @@ class OperatorMessage:
             (" l",                              colours.HIGHLIGHT_COLOUR),
             (" to learn more, then hit",        colours.DEFAULT_COLOUR),
             (" enter",                          colours.HIGHLIGHT_COLOUR),
-            (".",                               colours.DEFAULT_COLOUR),
+            (".",                               colours.DEFAULT_COLOUR)
         ]
 
     def hit_enter_to_continue(self):
@@ -92,4 +91,4 @@ class OperatorMessage:
     of the creators.
     
     We do not know who else may be reading your messages.
-        """, colours.PURPLE)]
+        """, colours.PURPLE, 0.004)]
