@@ -7,10 +7,11 @@ from datetime import datetime
 
 missive_gateway = MissiveGateway(DatabaseController, "/Users/rory/code/missives_python/missives_test.db")
 default_missive = Missive(name="Rory", message="Hello there", creation_time=datetime(2023, 4, 20, 8, 45, 20, 56178))
-default_missive_output = "\nTime recorded: Thu, 20 Apr 2023 08:45:20" \
+default_missive_output = "\n\nTime recorded:      Thu, 20 Apr 2023 08:45" \
                  "\nRecording location: Milky Way, Sol, Earth, " \
                  "British Isles, England, London" \
-                 "\nScribe: Rory" \
+                 "\nGathering:          Burning Nest '23" \
+                 "\n\nScribe:  Rory" \
                  "\nMissive: Hello there\n"
 
 @pytest.fixture(autouse=True)
@@ -29,17 +30,8 @@ def test_read_and_write_to_database(capsys):
     missive_gateway.insert_missive(default_missive)
 
     # select missive and map db data to Missive
-    missive_record = missive_gateway.select_missive_by_name(default_missive.name)
-    name = missive_record[1]
-    message = missive_record[2]
-    creation_time = missive_record[3]
-    location = missive_record[4]
-
-    missive = Missive(name=name,
-                      message=message,
-                      creation_time=datetime.strptime(creation_time, '%Y-%m-%d %H:%M:%S.%f'),
-                      location=location
-                      )
+    record = missive_gateway.select_missive_by_name(default_missive.name)
+    missive = Missive.init_from_record(record)
     missive.display_missive()
     captured = capsys.readouterr()
 
