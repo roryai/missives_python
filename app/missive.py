@@ -1,6 +1,6 @@
 from datetime import datetime
 from missives_python.app.printer import Printer
-import missives_python.app.colours as colours
+import missives_python.app.styles as styles
 
 
 class Missive:
@@ -33,16 +33,19 @@ class Missive:
     def format_location(self):
         return f"Milky Way, Sol, Earth, {self.location}"
 
+    def display_content(self):
+        return [
+            ("\nTime recorded:      ",      styles.MISSIVE_KEY),
+            (self.format_creation_time(),   styles.MISSIVE_DEFAULT_VALUE),
+            ("\nRecording location: ",      styles.MISSIVE_KEY),
+            (self.format_location(),        styles.MISSIVE_DEFAULT_VALUE),
+            ("\nGathering:          ",      styles.MISSIVE_KEY),
+            (self.gathering,                styles.MISSIVE_DEFAULT_VALUE),
+            ("\n\nScribe:  ",               styles.MISSIVE_KEY),
+            (self.name,                     styles.MISSIVE_USER),
+            ("\nMissive: ",                 styles.MISSIVE_KEY),
+            (self.message,                  styles.MISSIVE_MESSAGE)
+        ]
+
     def display_missive(self):
-        return self.printer.process([
-            ("\nTime recorded:      ",      colours.WHITE),
-            (self.format_creation_time(),   colours.YELLOW),
-            ("\nRecording location: ",      colours.WHITE),
-            (self.format_location(),        colours.YELLOW),
-            ("\nGathering:          ",      colours.WHITE),
-            (self.gathering,                colours.YELLOW),
-            ("\n\nScribe:  ",               colours.WHITE),
-            (self.name,                     colours.MAGENTA),
-            ("\nMissive: ",                 colours.WHITE),
-            (self.message,                  colours.CYAN)
-        ])
+        return self.printer.process(self.display_content())

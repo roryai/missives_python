@@ -1,24 +1,28 @@
 from time import sleep
 from rich import print
 
-DEFAULT_RATE = 0.015
-
 
 class Printer:
+
+    def __init__(self, dev=False):
+        self.dev = dev
 
     def process(self, specification):
         print()
         for properties in specification:
-            rate = DEFAULT_RATE
             message = properties[0]
-            colour = properties[1]
-            if len(properties) > 2:
-                rate = properties[2]
-            self.print_char_by_char(message, colour, rate)
+            style = properties[1]
+            colour = style[0]
+            formatting = style[1]
+            if self.dev:
+                rate = 0.0001
+            else:
+                rate = style[2]
+            self.print_char_by_char(message, colour, formatting, rate)
         print()
 
-    def print_char_by_char(self, message, colour, rate):
+    def print_char_by_char(self, message, colour, formatting, rate):
         for char in message:
-            print(f"[bold {colour}]{char}[/bold {colour}]", end='', flush=True)
+            print(f"[{formatting[0]} {colour}]{char}[/{formatting[0]} {colour}]", end='', flush=True)
             sleep(rate)
 

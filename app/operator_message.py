@@ -1,4 +1,4 @@
-import missives_python.app.colours as colours
+import missives_python.app.styles as styles
 from missives_python.app.printer import Printer
 
 
@@ -13,25 +13,27 @@ class OperatorMessage:
                 return self.read_write_learn()
 
             case 'what_is_your_name':
-                return [('What is your name?', colours.DEFAULT_COLOUR)]
+                return [('What is your name?', styles.DEFAULT)]
 
             case 'what_is_your_message':
-                return [('What message would you like to send to the future?', colours.DEFAULT_COLOUR)]
+                return [('What message would you like to send to the future?',
+                         styles.DEFAULT)]
 
             case 'confirm_submission':
                 return self.confirm_submission()
 
             case 'input_not_recognised':
-                return [('⚠️ Input not recognised, please try again. ⚠️', colours.YELLOW)]
+                return self.input_not_recognised()
 
             case 'name_only_letters':
-                return [('⚠️ Name must consist only of letters. ⚠️', colours.YELLOW)]
+                return self.name_only_letters()
 
             case 'message_too_short':
-                return [('⚠️ Your message is too short to be recorded. Please enter another message. ⚠️', colours.YELLOW)]
+                return self.message_too_short()
 
             case 'missive_recorded':
-                return [('Your missive has been added to the temporal archive, thank you.', colours.MAGENTA)]
+                return [('Your missive has been added to the temporal archive, thank you.',
+                         styles.SUCCESS)]
 
             case 'enter_to_continue':
                 return self.hit_enter_to_continue()
@@ -44,49 +46,72 @@ class OperatorMessage:
 
     def read_write_learn(self):
         return [
-            ('Would you like to write a missive, read a missive, or learn more about this time machine?',
-                colours.GREEN, 0.004),
-            ('\nType',                          colours.DEFAULT_COLOUR),
-            (' w',                              colours.HIGHLIGHT_COLOUR),
-            (' to write,',                      colours.DEFAULT_COLOUR),
-            (' r',                              colours.HIGHLIGHT_COLOUR),
-            (' to read, or',                    colours.DEFAULT_COLOUR),
-            (' l',                              colours.HIGHLIGHT_COLOUR),
-            (' to learn more, then hit',        colours.DEFAULT_COLOUR),
-            (' enter',                          colours.HIGHLIGHT_COLOUR),
-            ('.',                               colours.DEFAULT_COLOUR)
+            ('Would you like to write a missive, read a missive, or learn more about '
+             'this time machine?',
+                styles.DEFAULT),
+            ('\nType ',                     styles.DEFAULT),
+            ('w',                           styles.HIGHLIGHT),
+            (' to write, ',                 styles.DEFAULT),
+            ('r',                           styles.HIGHLIGHT),
+            (' to read, or ',               styles.DEFAULT),
+            ('l',                           styles.HIGHLIGHT),
+            (' to learn more, then hit ',   styles.DEFAULT),
+            ('enter',                       styles.HIGHLIGHT),
+            ('.',                           styles.DEFAULT)
         ]
 
     def confirm_submission(self):
         return [
-            ('Would you like to submit your message, or start again?', colours.DEFAULT_COLOUR),
-            ('\nType', colours.DEFAULT_COLOUR),
-            (' y', colours.HIGHLIGHT_COLOUR),
-            (' then hit', colours.DEFAULT_COLOUR),
-            (' enter', colours.HIGHLIGHT_COLOUR),
-            (' to submit your missive, or type', colours.DEFAULT_COLOUR),
-            (' n', colours.HIGHLIGHT_COLOUR),
-            (' then hit', colours.DEFAULT_COLOUR),
-            (' enter', colours.HIGHLIGHT_COLOUR),
-            (' to start again.', colours.DEFAULT_COLOUR)
+            ('Would you like to submit your message, or start again?', styles.DEFAULT),
+            ('\nType ',                             styles.DEFAULT),
+            ('y',                                   styles.HIGHLIGHT),
+            (' then hit ',                          styles.DEFAULT),
+            ('enter',                               styles.HIGHLIGHT),
+            (' to submit your missive, or type ',   styles.DEFAULT),
+            ('n',                                   styles.HIGHLIGHT),
+            (' then hit ',                          styles.DEFAULT),
+            ('enter',                               styles.HIGHLIGHT),
+            (' to start again.',                    styles.DEFAULT)
+        ]
+
+    def input_not_recognised(self):
+        return [
+            ('⚠️', styles.WARNING_SIGN),
+            ('Input not recognised, please try again.', styles.WARNING_BODY),
+            ('⚠️', styles.WARNING_SIGN)
+        ]
+    
+    def name_only_letters(self):
+        return [
+            ('⚠️', styles.WARNING_SIGN),
+            ('Name must consist only of letters.', styles.WARNING_BODY),
+            ('⚠️', styles.WARNING_SIGN)
+        ]
+
+    def message_too_short(self):
+        return [
+            ('⚠️', styles.WARNING_SIGN),
+            ('Your message is too short to be recorded. Please enter another message.',
+             styles.WARNING_BODY),
+            ('⚠️', styles.WARNING_SIGN)
         ]
 
     def hit_enter_to_continue(self):
         return [
-            ('Hit',             colours.DEFAULT_COLOUR),
-            (' enter',          colours.HIGHLIGHT_COLOUR),
-            (' to continue.',   colours.DEFAULT_COLOUR)
+            ('Hit ',            styles.DEFAULT),
+            ('enter',           styles.HIGHLIGHT),
+            (' to continue.',   styles.DEFAULT)
         ]
 
     def display_another_missive_or_continue(self):
         return [
-            ('\n\nType',                                colours.DEFAULT_COLOUR),
-            (' r',                                      colours.HIGHLIGHT_COLOUR),
-            (' then hit',                               colours.DEFAULT_COLOUR),
-            (' enter',                                  colours.HIGHLIGHT_COLOUR),
-            (' to read another missive, or hit',        colours.DEFAULT_COLOUR),
-            (' enter',                                  colours.HIGHLIGHT_COLOUR),
-            (' to return to menu.',                     colours.DEFAULT_COLOUR)
+            ('\n\nType ',                           styles.DEFAULT),
+            ('r',                                   styles.HIGHLIGHT),
+            (' then hit ',                          styles.DEFAULT),
+            ('enter',                               styles.HIGHLIGHT),
+            (' to read another missive, or hit ',   styles.DEFAULT),
+            ('enter',                               styles.HIGHLIGHT),
+            (' to return to menu.',                 styles.DEFAULT)
         ]
 
     def time_machine_info(self):
@@ -111,4 +136,4 @@ class OperatorMessage:
     identity of the creators.
     
     We do not know who else may be reading your messages.
-        """, colours.PURPLE, 0.004)]
+        """, styles.INFO)]
