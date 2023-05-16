@@ -1,5 +1,5 @@
-import colours
-from printer import Printer
+import missives_python.app.colours as colours
+from missives_python.app.printer import Printer
 
 
 class OperatorMessage:

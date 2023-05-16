@@ -1,6 +1,6 @@
 from datetime import datetime
-from printer import Printer
-import colours
+from missives_python.app.printer import Printer
+import missives_python.app.colours as colours
 
 
 class Missive:
