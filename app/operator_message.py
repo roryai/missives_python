@@ -77,21 +77,21 @@ class OperatorMessage:
     def input_not_recognised(self):
         return [
             ('⚠️', styles.WARNING_SIGN),
-            ('Input not recognised, please try again.', styles.WARNING_BODY),
+            (' Input not recognised, please try again.', styles.WARNING_BODY),
             ('⚠️', styles.WARNING_SIGN)
         ]
     
     def name_only_letters(self):
         return [
             ('⚠️', styles.WARNING_SIGN),
-            ('Name must consist only of letters.', styles.WARNING_BODY),
+            (' Name must consist only of letters.', styles.WARNING_BODY),
             ('⚠️', styles.WARNING_SIGN)
         ]
 
     def message_too_short(self):
         return [
             ('⚠️', styles.WARNING_SIGN),
-            ('Your message is too short to be recorded. Please enter another message.',
+            (' Your message is too short to be recorded. Please enter another message.',
              styles.WARNING_BODY),
             ('⚠️', styles.WARNING_SIGN)
         ]
