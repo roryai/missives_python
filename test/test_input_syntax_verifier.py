@@ -89,8 +89,7 @@ def test_message_is_verified_if_exactly_1000_chars_in_length():
     
     We do not know who else may be reading your messages.
     
-    a few more then
-        """
+    just a few more chars123"""
     assert verifier.check_message_max_length(message_of_1000_chars) is True
 
 
@@ -117,7 +116,7 @@ def test_message_is_not_verified_if_over_1000_chars_in_length():
     
     We do not know who else may be reading your messages.
     
-    a few more then!
-        """
+    just a few more chars1234"""
+
     assert verifier.check_message_max_length(message_of_1001_chars) is False
 
