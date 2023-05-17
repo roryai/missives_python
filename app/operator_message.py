@@ -31,6 +31,9 @@ class OperatorMessage:
             case 'message_too_short':
                 return self.message_too_short()
 
+            case 'message_partially_recorded':
+                return self.message_partially_recorded()
+
             case 'missive_recorded':
                 return [{'text': 'Your missive has been added to the temporal archive, thank you.',
                          'styling': styles.SUCCESS}]
@@ -85,7 +88,7 @@ class OperatorMessage:
     def name_only_letters(self):
         return [
              {'text': '⚠️', 'styling': styles.WARNING_SIGN},
-             {'text': ' Name must begin with letters and not be excessive in length.',
+             {'text': 'Name must begin with letters and not be excessive in length.',
               'styling': styles.WARNING_BODY},
              {'text': '⚠️', 'styling': styles.WARNING_SIGN}
         ]
@@ -94,6 +97,14 @@ class OperatorMessage:
         return [
             {'text': '⚠️', 'styling': styles.WARNING_SIGN},
             {'text': 'Your message is too short to be recorded. Please enter another message.',
+             'styling': styles.WARNING_BODY},
+            {'text': '⚠️', 'styling': styles.WARNING_SIGN}
+        ]
+
+    def message_partially_recorded(self):
+        return [
+            {'text': '⚠️', 'styling': styles.WARNING_SIGN},
+            {'text': 'Only the first 1000 characters of your message were recorded.',
              'styling': styles.WARNING_BODY},
             {'text': '⚠️', 'styling': styles.WARNING_SIGN}
         ]

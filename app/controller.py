@@ -54,7 +54,6 @@ class Controller:
     def get_name(self):
         OperatorMessage('what_is_your_name')
         name = input(INPUT_PROMPT)
-        # two or more letters only of any case
         if self.verifier.check_name(name):
             return name
         else:
@@ -64,12 +63,15 @@ class Controller:
     def get_message(self):
         OperatorMessage('what_is_your_message')
         message = input(INPUT_PROMPT)
-        if len(message) < 10:
+        if self.verifier.check_message_min_length(message) is False:
             OperatorMessage('message_too_short')
             return self.get_message()
         return message
 
     def record_missive(self, missive):
+        if self.verifier.check_message_max_length(missive.message) is False:
+            OperatorMessage('message_partially_recorded')
+            missive.message = missive.message[0:1000]
         self.missive_gateway.insert_missive(missive)
         OperatorMessage('missive_recorded')  # TODO make this dependent on success
         self.enter_to_continue()
