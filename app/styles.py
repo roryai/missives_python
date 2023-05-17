@@ -3,23 +3,20 @@ MAGENTA = '#ff55ff'
 YELLOW = '#ffff00'
 PURPLE = '#bb33ff'
 GREEN = '#00ff00'
-RED = '#ff0000'
 ORANGE = '#ffa400'
 WHITE = '#ffffff'
 
-SLOW = 0.01
 MEDIUM = 0.008
 FAST = 0.003
-DEV = 0.0001
 
-DEFAULT =       (GREEN, ['bold '], MEDIUM)
-WARNING_BODY =  (YELLOW, ['bold '], MEDIUM)
-WARNING_SIGN =  (YELLOW, ['bold blink '], MEDIUM)
-HIGHLIGHT =     (ORANGE, ['bold underline '], MEDIUM)
-INFO =          (PURPLE, ['bold'], FAST)
-SUCCESS =       (MAGENTA, ['bold'], MEDIUM)
+DEFAULT =       {'colour': GREEN, 'font_style': 'bold ', 'rate': MEDIUM}
+WARNING_BODY =  {'colour': YELLOW, 'font_style': 'bold ', 'rate': MEDIUM}
+WARNING_SIGN =  {'colour': YELLOW, 'font_style': 'bold blink', 'rate': MEDIUM}
+HIGHLIGHT =     {'colour': ORANGE, 'font_style': 'bold underline', 'rate': MEDIUM}
+INFO =          {'colour': PURPLE, 'font_style': 'bold', 'rate': FAST}
+SUCCESS =       {'colour': MAGENTA, 'font_style': 'bold', 'rate': MEDIUM}
 
-MISSIVE_KEY =               (WHITE, ['bold '], FAST)
-MISSIVE_DEFAULT_VALUE =     (YELLOW, ['bold '], FAST)
-MISSIVE_USER =              (MAGENTA, ['bold '], MEDIUM)
-MISSIVE_MESSAGE =           (CYAN, ['bold '], MEDIUM)
+MISSIVE_KEY =           {'colour': WHITE, 'font_style': 'bold ', 'rate': FAST}
+MISSIVE_DEFAULT_VALUE = {'colour': YELLOW, 'font_style': 'bold ', 'rate': FAST}
+MISSIVE_USER =          {'colour': MAGENTA, 'font_style': 'bold ', 'rate': MEDIUM}
+MISSIVE_MESSAGE =       {'colour': CYAN, 'font_style': 'bold ', 'rate': MEDIUM}

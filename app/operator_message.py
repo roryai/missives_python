@@ -13,11 +13,11 @@ class OperatorMessage:
                 return self.read_write_learn()
 
             case 'what_is_your_name':
-                return [('What is your name?', styles.DEFAULT)]
+                return [{'text': 'What is your name?', 'styling': styles.DEFAULT}]
 
             case 'what_is_your_message':
-                return [('What message would you like to send to the future?',
-                         styles.DEFAULT)]
+                return [{'text': 'What message would you like to send to the future?',
+                         'styling': styles.DEFAULT}]
 
             case 'confirm_submission':
                 return self.confirm_submission()
@@ -32,8 +32,8 @@ class OperatorMessage:
                 return self.message_too_short()
 
             case 'missive_recorded':
-                return [('Your missive has been added to the temporal archive, thank you.',
-                         styles.SUCCESS)]
+                return [{'text': 'Your missive has been added to the temporal archive, thank you.',
+                         'styling': styles.SUCCESS}]
 
             case 'enter_to_continue':
                 return self.hit_enter_to_continue()
@@ -46,76 +46,77 @@ class OperatorMessage:
 
     def read_write_learn(self):
         return [
-            ('Would you like to write a missive, read a missive, or learn more about '
+            {'text': 'Would you like to write a missive, read a missive, or learn more about '
              'this time machine?',
-                styles.DEFAULT),
-            ('\nType ',                     styles.DEFAULT),
-            ('w',                           styles.HIGHLIGHT),
-            (' to write, ',                 styles.DEFAULT),
-            ('r',                           styles.HIGHLIGHT),
-            (' to read, or ',               styles.DEFAULT),
-            ('l',                           styles.HIGHLIGHT),
-            (' to learn more, then hit ',   styles.DEFAULT),
-            ('enter',                       styles.HIGHLIGHT),
-            ('.',                           styles.DEFAULT)
+                'styling': styles.DEFAULT},
+            {'text': '\nType ',                     'styling': styles.DEFAULT},
+            {'text': 'w',                           'styling': styles.HIGHLIGHT},
+            {'text': ' to write, ',                 'styling': styles.DEFAULT},
+            {'text': 'r',                           'styling': styles.HIGHLIGHT},
+            {'text': ' to read, or ',               'styling': styles.DEFAULT},
+            {'text': 'l',                           'styling': styles.HIGHLIGHT},
+            {'text': ' to learn more, then hit ',   'styling': styles.DEFAULT},
+            {'text': 'enter',                       'styling': styles.HIGHLIGHT},
+            {'text': '.',                           'styling': styles.DEFAULT},
         ]
 
     def confirm_submission(self):
         return [
-            ('Would you like to submit your message, or start again?', styles.DEFAULT),
-            ('\nType ',                             styles.DEFAULT),
-            ('y',                                   styles.HIGHLIGHT),
-            (' then hit ',                          styles.DEFAULT),
-            ('enter',                               styles.HIGHLIGHT),
-            (' to submit your missive, or type ',   styles.DEFAULT),
-            ('n',                                   styles.HIGHLIGHT),
-            (' then hit ',                          styles.DEFAULT),
-            ('enter',                               styles.HIGHLIGHT),
-            (' to start again.',                    styles.DEFAULT)
+            {'text': 'Would you like to submit your message, or start again?',
+             'styling': styles.DEFAULT},
+            {'text': '\nType ',                             'styling': styles.DEFAULT},
+            {'text': 'y',                                   'styling': styles.HIGHLIGHT},
+            {'text': ' then hit ',                          'styling': styles.DEFAULT},
+            {'text': 'enter',                               'styling': styles.HIGHLIGHT},
+            {'text': ' to submit your missive, or type ',   'styling': styles.DEFAULT},
+            {'text': 'n',                                   'styling': styles.HIGHLIGHT},
+            {'text': ' then hit ',                          'styling': styles.DEFAULT},
+            {'text': 'enter',                               'styling': styles.HIGHLIGHT},
+            {'text': ' to start again.',                    'styling': styles.DEFAULT},
         ]
 
     def input_not_recognised(self):
         return [
-            ('⚠️', styles.WARNING_SIGN),
-            (' Input not recognised, please try again.', styles.WARNING_BODY),
-            ('⚠️', styles.WARNING_SIGN)
+            {'text': '⚠️', 'styling': styles.WARNING_SIGN},
+            {'text': ' Input not recognised, please try again.', 'styling': styles.WARNING_BODY},
+            {'text': '⚠️', 'styling': styles.WARNING_SIGN}
         ]
     
     def name_only_letters(self):
         return [
-            ('⚠️', styles.WARNING_SIGN),
-            (' Name must consist only of letters.', styles.WARNING_BODY),
-            ('⚠️', styles.WARNING_SIGN)
+             {'text': '⚠️', 'styling': styles.WARNING_SIGN},
+             {'text': ' Name must consist only of letters.', 'styling': styles.WARNING_BODY},
+             {'text': '⚠️', 'styling': styles.WARNING_SIGN}
         ]
 
     def message_too_short(self):
         return [
-            ('⚠️', styles.WARNING_SIGN),
-            (' Your message is too short to be recorded. Please enter another message.',
-             styles.WARNING_BODY),
-            ('⚠️', styles.WARNING_SIGN)
+            {'text': '⚠️', 'styling': styles.WARNING_SIGN},
+            {'text': 'Your message is too short to be recorded. Please enter another message.',
+             'styling': styles.WARNING_BODY},
+            {'text': '⚠️', 'styling': styles.WARNING_SIGN}
         ]
 
     def hit_enter_to_continue(self):
         return [
-            ('Hit ',            styles.DEFAULT),
-            ('enter',           styles.HIGHLIGHT),
-            (' to continue.',   styles.DEFAULT)
+            {'text': 'Hit ',            'styling': styles.DEFAULT},
+            {'text': 'enter',           'styling': styles.HIGHLIGHT},
+            {'text': ' to continue.',   'styling': styles.DEFAULT}
         ]
 
     def display_another_missive_or_continue(self):
         return [
-            ('\n\nType ',                           styles.DEFAULT),
-            ('r',                                   styles.HIGHLIGHT),
-            (' then hit ',                          styles.DEFAULT),
-            ('enter',                               styles.HIGHLIGHT),
-            (' to read another missive, or hit ',   styles.DEFAULT),
-            ('enter',                               styles.HIGHLIGHT),
-            (' to return to menu.',                 styles.DEFAULT)
+            {'text': '\n\nType ',                           'styling': styles.DEFAULT},
+            {'text': 'r',                                   'styling': styles.HIGHLIGHT},
+            {'text': ' then hit ',                          'styling': styles.DEFAULT},
+            {'text': 'enter',                               'styling': styles.HIGHLIGHT},
+            {'text': ' to read another missive, or hit ',   'styling': styles.DEFAULT},
+            {'text': 'enter',                               'styling': styles.HIGHLIGHT},
+            {'text': ' to return to menu.',                 'styling': styles.DEFAULT}
         ]
 
     def time_machine_info(self):
-        return [("""
+        return [{'text': """
     This is a time machine that allows you to send messages to people in the future.
     
     It was discovered aboard the wreck of the Mary Celeste, in the captain's cabin.
@@ -136,4 +137,4 @@ class OperatorMessage:
     identity of the creators.
     
     We do not know who else may be reading your messages.
-        """, styles.INFO)]
+        """, 'styling': styles.INFO}]

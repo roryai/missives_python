@@ -7,22 +7,23 @@ class Printer:
     def __init__(self, dev=False):
         self.dev = dev
 
-    def process(self, specification):
+    def process(self, messages):
         print()
-        for properties in specification:
-            message = properties[0]
-            style = properties[1]
-            colour = style[0]
-            formatting = style[1]
-            if self.dev:
-                rate = 0.0001
-            else:
-                rate = style[2]
-            self.print_char_by_char(message, colour, formatting, rate)
+        for message in messages:
+            self.process_two(message['text'], message['styling'])
         print()
 
-    def print_char_by_char(self, message, colour, formatting, rate):
+    def process_two(self, text, styling):
+        rate = self.set_rate(styling['rate'])
+        self.print_char_by_char(text, styling['colour'], styling['font_style'], rate)
+
+    def set_rate(self, rate):
+        if self.dev:
+            return 0.0001
+        else:
+            return rate
+
+    def print_char_by_char(self, message, colour, font_style, rate):
         for char in message:
-            print(f"[{formatting[0]} {colour}]{char}[/{formatting[0]} {colour}]", end='', flush=True)
+            print(f'[{font_style} {colour}]{char}[/{font_style} {colour}]', end='', flush=True)
             sleep(rate)
-

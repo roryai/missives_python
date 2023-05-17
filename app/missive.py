@@ -9,7 +9,7 @@ class Missive:
                  name,
                  message,
                  creation_time=None,
-                 location="British Isles, England, London",
+                 location='British Isles, England, London',
                  gathering="Burning Nest '23",
                  printer=Printer()
                  ):
@@ -28,23 +28,23 @@ class Missive:
                        location=record[4])
 
     def format_creation_time(self):
-        return self.creation_time.strftime("%a, %d %b %Y %H:%M")
+        return self.creation_time.strftime('%a, %d %b %Y %H:%M')
 
     def format_location(self):
-        return f"Milky Way, Sol, Earth, {self.location}"
+        return f'Milky Way, Sol, Earth, {self.location}'
 
     def display_content(self):
         return [
-            ("\nTime recorded:      ",      styles.MISSIVE_KEY),
-            (self.format_creation_time(),   styles.MISSIVE_DEFAULT_VALUE),
-            ("\nRecording location: ",      styles.MISSIVE_KEY),
-            (self.format_location(),        styles.MISSIVE_DEFAULT_VALUE),
-            ("\nGathering:          ",      styles.MISSIVE_KEY),
-            (self.gathering,                styles.MISSIVE_DEFAULT_VALUE),
-            ("\n\nScribe:  ",               styles.MISSIVE_KEY),
-            (self.name,                     styles.MISSIVE_USER),
-            ("\nMissive: ",                 styles.MISSIVE_KEY),
-            (self.message,                  styles.MISSIVE_MESSAGE)
+            {'text': '\nTime recorded:      ',      'styling': styles.MISSIVE_KEY},
+            {'text': self.format_creation_time(),   'styling': styles.MISSIVE_DEFAULT_VALUE},
+            {'text': '\nRecording location: ',      'styling': styles.MISSIVE_KEY},
+            {'text': self.format_location(),        'styling': styles.MISSIVE_DEFAULT_VALUE},
+            {'text': '\nGathering:          ',      'styling': styles.MISSIVE_KEY},
+            {'text': self.gathering,                'styling': styles.MISSIVE_DEFAULT_VALUE},
+            {'text': '\n\nScribe:  ',               'styling': styles.MISSIVE_KEY},
+            {'text': self.name,                     'styling': styles.MISSIVE_USER},
+            {'text': '\nMissive: ',                 'styling': styles.MISSIVE_KEY},
+            {'text': self.message,                  'styling': styles.MISSIVE_MESSAGE}
         ]
 
     def display_missive(self):
