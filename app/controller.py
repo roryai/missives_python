@@ -2,7 +2,8 @@ from missives_python.app.missive import Missive
 from missives_python.app.missive_gateway import MissiveGateway
 from missives_python.app.operator_message import OperatorMessage
 from missives_python.app.db_controller import DatabaseController
-import re
+from missives_python.app.input_syntax_verifier import InputSyntaxVerifier
+
 
 INPUT_PROMPT = '-> '
 
@@ -12,6 +13,7 @@ class Controller:
     def __init__(self):
         self.missive_gateway = MissiveGateway(DatabaseController,
                                               '/Users/rory/code/missives_python/missives_staging.db')
+        self.verifier = InputSyntaxVerifier()
 
     def flow_menu(self, error_message=None):
         self.pre_flow(error_message)
@@ -53,7 +55,7 @@ class Controller:
         OperatorMessage('what_is_your_name')
         name = input(INPUT_PROMPT)
         # two or more letters only of any case
-        if re.search("^[a-zA-Z]{2,}$", name):
+        if self.verifier.check_name(name):
             return name
         else:
             OperatorMessage('name_only_letters')

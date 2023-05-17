@@ -85,7 +85,8 @@ class OperatorMessage:
     def name_only_letters(self):
         return [
              {'text': '⚠️', 'styling': styles.WARNING_SIGN},
-             {'text': ' Name must consist only of letters.', 'styling': styles.WARNING_BODY},
+             {'text': ' Name must begin with letters and not be excessive in length.',
+              'styling': styles.WARNING_BODY},
              {'text': '⚠️', 'styling': styles.WARNING_SIGN}
         ]
 
