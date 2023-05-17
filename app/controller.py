@@ -1,7 +1,7 @@
-from missive import Missive
-from missive_gateway import MissiveGateway
-from operator_message import OperatorMessage
-from db_controller import DatabaseController
+from missives_python.app.missive import Missive
+from missives_python.app.missive_gateway import MissiveGateway
+from missives_python.app.operator_message import OperatorMessage
+from missives_python.app.db_controller import DatabaseController
 import re
 
 INPUT_PROMPT = '-> '
@@ -97,6 +97,3 @@ class Controller:
             self.display_random_missive()
         else:
             self.flow_menu()
-
-
-Controller().flow_menu()
