@@ -9,13 +9,13 @@ class Missive:
                  name,
                  message,
                  creation_time=None,
-                 location='British Isles, England, London',
+                 location='Milky Way, Sol, Earth, British Isles, England, Devon',
                  gathering="Burning Nest '23",
                  printer=Printer()
                  ):
         self.name = name
         self.message = message
-        self.creation_time = creation_time or datetime.now()
+        self.creation_time = creation_time or datetime.now().__format__('%Y-%m-%d %H:%M:%S')
         self.location = location
         self.gathering = gathering
         self.printer = printer
@@ -24,11 +24,13 @@ class Missive:
     def init_from_record(cls, record):
         return Missive(name=record[1],
                        message=record[2],
-                       creation_time=datetime.strptime(record[3], '%Y-%m-%d %H:%M:%S.%f'),
-                       location=record[4])
+                       creation_time=record[3],
+                       location=record[4],
+                       gathering=record[5])
 
     def format_creation_time(self):
-        return self.creation_time.strftime('%a, %d %b %Y %H:%M')
+        datetime_object = datetime.strptime(self.creation_time, '%Y-%m-%d %H:%M:%S')
+        return datetime_object.strftime('%a, %d %b %Y %H:%M')
 
     def format_location(self):
         return f'Milky Way, Sol, Earth, {self.location}'
@@ -38,7 +40,7 @@ class Missive:
             {'text': '\nTime recorded:      ',      'styling': styles.MISSIVE_KEY},
             {'text': self.format_creation_time(),   'styling': styles.MISSIVE_DEFAULT_VALUE},
             {'text': '\nRecording location: ',      'styling': styles.MISSIVE_KEY},
-            {'text': self.format_location(),        'styling': styles.MISSIVE_DEFAULT_VALUE},
+            {'text': self.location,                 'styling': styles.MISSIVE_DEFAULT_VALUE},
             {'text': '\nGathering:          ',      'styling': styles.MISSIVE_KEY},
             {'text': self.gathering,                'styling': styles.MISSIVE_DEFAULT_VALUE},
             {'text': '\n\nScribe:  ',               'styling': styles.MISSIVE_KEY},

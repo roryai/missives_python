@@ -6,10 +6,10 @@ from datetime import datetime
 
 
 missive_gateway = MissiveGateway(DatabaseController, "/Users/rory/code/missives_python/missives_test.db")
-default_missive = Missive(name="Rory", message="Hello there", creation_time=datetime(2023, 4, 20, 8, 45, 20, 56178))
+default_missive = Missive(name="Rory", message="Hello there",
+                          creation_time=datetime(2023, 4, 20, 8, 45, 20).__format__('%Y-%m-%d %H:%M:%S'))
 default_missive_output = "\n\nTime recorded:      Thu, 20 Apr 2023 08:45" \
-                 "\nRecording location: Milky Way, Sol, Earth, " \
-                 "British Isles, England, London" \
+                 "\nRecording location: Milky Way, Sol, Earth, British Isles, England, Devon" \
                  "\nGathering:          Burning Nest '23" \
                  "\n\nScribe:  Rory" \
                  "\nMissive: Hello there\n"
