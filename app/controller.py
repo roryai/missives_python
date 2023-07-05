@@ -1,8 +1,8 @@
-from missives_python.app.missive import Missive
-from missives_python.app.missive_gateway import MissiveGateway
-from missives_python.app.operator_message import OperatorMessage
-from missives_python.app.db_controller import DatabaseController
-from missives_python.app.input_syntax_verifier import InputSyntaxVerifier
+from app.missive import Missive
+from app.missive_gateway import MissiveGateway
+from app.operator_message import OperatorMessage
+from app.db_controller import DatabaseController
+from app.input_syntax_verifier import InputSyntaxVerifier
 
 
 INPUT_PROMPT = '-> '

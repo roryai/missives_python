@@ -1,7 +1,7 @@
-from missives_python.app.missive import Missive
-from missives_python.app.printer import Printer
-from missives_python.app.operator_message import OperatorMessage
-import missives_python.app.styles as styles
+from app.missive import Missive
+from app.printer import Printer
+from app.operator_message import OperatorMessage
+import app.styles as styles
 from datetime import datetime
 
 

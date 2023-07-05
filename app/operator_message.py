@@ -1,5 +1,5 @@
-import missives_python.app.styles as styles
-from missives_python.app.printer import Printer
+import app.styles as styles
+from app.printer import Printer
 
 
 class OperatorMessage:
