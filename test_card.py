@@ -12,7 +12,7 @@ info_message = 'This is a test message to display the text formatting.' \
                '\nfit on the same screen as everything else.' \
 
 missive = Missive(name="Rory", message=info_message,
-                  creation_time=datetime(2023, 4, 20, 8, 45, 20, 56178), printer=printer)
+                  creation_time=str(datetime(2023, 4, 20, 8, 45, 20)), printer=printer)
 
 OperatorMessage('read_write_learn', printer)
 OperatorMessage('name_only_letters', printer)
