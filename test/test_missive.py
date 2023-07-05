@@ -14,10 +14,12 @@ default_missive_output = "\n\nTime recorded:      Thu, 20 Apr 2023 08:45" \
                  "\n\nScribe:  Rory" \
                  "\nMissive: Hello there\n"
 
+
 @pytest.fixture(autouse=True)
 def run_before_and_after_tests():
     missive_gateway.delete_all_missives()
     yield
+
 
 def test_missive_output_format(capsys):
     default_missive.display_missive()

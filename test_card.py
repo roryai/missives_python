@@ -5,11 +5,11 @@ import app.styles as styles
 from datetime import datetime
 
 
-printer = Printer(True)
+printer = Printer(dev=True)
 
 info_message = 'This is a test message to display the text formatting.' \
                '\nI am using this message as the real message is too long and will not ' \
-               '\nfit on the same screen as everything else.' \
+               '\nfit on the same screen as everything else.'
 
 missive = Missive(name="Rory", message=info_message,
                   creation_time=str(datetime(2023, 4, 20, 8, 45, 20)), printer=printer)
