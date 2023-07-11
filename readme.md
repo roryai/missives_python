@@ -32,7 +32,7 @@ I used [rich](https://github.com/textualize/rich/blob/master/README.md) to forma
 
 In this screenshot I've used iterm2 to set the background to be a matrix style picture.
 
-![](gallery/test_card.png)
+![](gallery/test_card.jpeg)
 
 I initially used a CRT monitor to display it on. I combined it with [cool-retro-term](https://github.com/Swordfish90/cool-retro-term) for some great visual effects:
 
