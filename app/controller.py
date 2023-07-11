@@ -11,8 +11,7 @@ INPUT_PROMPT = '-> '
 class Controller:
 
     def __init__(self):
-        self.missive_gateway = MissiveGateway(DatabaseController,
-                                              '/Users/rory/code/missives_python/missives_live.db')
+        self.missive_gateway = MissiveGateway(DatabaseController, '../missives_live.db')
         self.verifier = InputSyntaxVerifier()
 
     def flow_menu(self, error_message=None):

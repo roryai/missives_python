@@ -5,7 +5,7 @@ from app.missive_gateway import MissiveGateway
 from datetime import datetime
 
 
-missive_gateway = MissiveGateway(DatabaseController, "/Users/rory/code/missives_python/missives_test.db")
+missive_gateway = MissiveGateway(DatabaseController, "../missives_test.db")
 default_missive = Missive(name="Rory", message="Hello there",
                           creation_time=str(datetime(2023, 4, 20, 8, 45, 20)))
 default_missive_output = "\n\nTime recorded:      Thu, 20 Apr 2023 08:45" \

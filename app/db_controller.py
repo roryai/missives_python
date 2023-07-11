@@ -4,7 +4,7 @@ from sqlite3 import Error
 
 class DatabaseController:
 
-    def __init__(self, table_init_statement=None, path="/Users/rory/code/missives_python/missives.db"):
+    def __init__(self, table_init_statement=None, path="../missives.db"):
         self.connection = self.connect_to_db(path)
         if table_init_statement:
             self.execute_query(table_init_statement, [])
