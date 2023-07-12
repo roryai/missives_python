@@ -1,26 +1,32 @@
-# Missives
+# Missives to the Future
 #### A time machine that allows you to send messages to people in the future.
 
 ### About
-This is an art project that I created to share with my friends at festivals and gatherings.
+This is an art project that I created to share with my friends.
 
-It is a CLI app. It is essentially a guest book that lets you leave a message that can be read back by other users.
+It is a CLI app, and is essentially a guest book that lets you leave a message that can be read back by other users.
 
-It can be run on a laptop, but I prefer to run it on a raspberry pi with a retro monitor (see pics below)
+It can be run on a laptop, but I prefer to run it on a raspberry pi with a retro monitor (see pics below).
 
 Seeing the way people engage with it, and watching the message archive grow over time, has been a real joy.
 
 ### Usage
 
-Firstly, you will need to clone this repository. Open a terminal window and navigate to the directory you want to install missives in, then run `git clone git@github.com:roryai/missives_python.git`
+If you already have python and know how to use pip:
 
-Next, you will need to have python installed on your machine. You can check if you have it installed by opening a terminal window and entering `python --version`. If you see something like `Python 3.11.3` then you have it installed. If you see an error then follow the instructions on [this page](https://realpython.com/installing-python/) to install python.
+Run `python main.py` to start the program.
 
-Once python is installed you need to install the project dependencies. Do this by running `pip install -r requirements.txt` in the missives project folder.
+If you've never used python:
+
+You can check if you have python already installed by opening a terminal window and entering `python --version`. If you see something like `Python 3.11.3` then you have it installed. If you see an error then follow the instructions on [this page](https://realpython.com/installing-python/) to install python.
+
+Next install the project dependencies. Do this by running `pip install -r requirements.txt` in the missives project folder.
 
 Now run `python main.py` to start the program.
 
-The database will be created automatically as a `.db` file in the project root directory. Remember to back this file up.
+### Database
+
+I used sqlite for this project. The database will be created automatically as a `.db` file in the project root directory. Remember to back this file up.
 
 ### Gallery
 
