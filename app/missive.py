@@ -51,3 +51,12 @@ class Missive:
             {'text': '\nMissive: ',                 'styling': styles.MISSIVE_KEY},
             {'text': self.message,                  'styling': styles.MISSIVE_MESSAGE}
         ]
+
+    def __eq__(self, other):
+        return (
+            self.name == other.name and
+            self.message == other.message and
+            self.creation_time == other.creation_time and
+            self.location == other.location and
+            self.gathering == other.gathering
+        )
