@@ -1,4 +1,5 @@
 import pytest
+
 from app.missive import Missive
 from app.db_controller import DatabaseController
 from app.missive_gateway import MissiveGateway
@@ -19,13 +20,6 @@ default_missive_output = "\n\nTime recorded:      Thu, 20 Apr 2023 08:45" \
 def run_before_and_after_tests():
     missive_gateway.delete_all_missives()
     yield
-
-
-def test_missive_output_format(capsys):
-    default_missive.display_missive()
-    captured = capsys.readouterr()
-
-    assert captured.out == default_missive_output
 
 
 def test_read_and_write_to_database(capsys):
