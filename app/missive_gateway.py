@@ -43,15 +43,3 @@ class MissiveGateway:
         DELETE FROM missives;
         """
         self.db_controller.execute_query(statement, [])
-
-    def count_missives(self):
-        statement = """
-        SELECT COUNT(*) FROM missives;
-        """
-        return self.db_controller.execute_read_query(statement)[0][0]
-
-    def select_all_missives(self):
-        statement = """
-        SELECT * FROM missives;
-        """
-        return self.db_controller.execute_read_query(statement)
