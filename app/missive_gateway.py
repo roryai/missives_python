@@ -29,8 +29,13 @@ class MissiveGateway:
     def select_one_random_missive(self):
         statement = """
         SELECT * FROM missives WHERE id IN (SELECT id FROM missives ORDER BY RANDOM() LIMIT 1);
-        """  # TODO: handle case where no record is found
-        return self.db_controller.execute_read_query(statement)[0]
+        """
+        query_result = self.db_controller.execute_read_query(statement)
+        try:
+            data = query_result[0]
+        except IndexError:
+            data = None
+        return data
 
     def select_missive_by_name(self, name):
         statement = f"""

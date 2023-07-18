@@ -23,6 +23,7 @@ def test_write_to_and_read_from_db():
 
     assert written_missive == read_missive
 
+
 def test_selects_random_missive():
     missive = Missive(name="Rory", message="Hello there")
     missive_gateway.insert_missive(missive)
@@ -31,3 +32,8 @@ def test_selects_random_missive():
 
     assert selected_missive == missive
 
+
+def test_returns_none_if_no_record_found():
+    selected_record = missive_gateway.select_one_random_missive()
+
+    assert selected_record is None
