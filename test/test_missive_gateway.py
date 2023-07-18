@@ -21,8 +21,13 @@ def test_write_to_and_read_from_db():
     record = missive_gateway.select_missive_by_name(written_missive.name)
     read_missive = Missive.init_from_record(record)
 
-    assert written_missive.name == read_missive.name
-    assert written_missive.message == read_missive.message
-    assert written_missive.creation_time == read_missive.creation_time
-    assert written_missive.location == read_missive.location
-    assert written_missive.gathering == read_missive.gathering
+    assert written_missive == read_missive
+
+def test_selects_random_missive():
+    missive = Missive(name="Rory", message="Hello there")
+    missive_gateway.insert_missive(missive)
+    selected_record = missive_gateway.select_one_random_missive()
+    selected_missive = Missive.init_from_record(selected_record)
+
+    assert selected_missive == missive
+
