@@ -10,12 +10,10 @@ class Printer:
     def process(self, messages):
         print()
         for message in messages:
-            self.__process_two(message['text'], message['styling'])
+            styling = message['styling']
+            rate = self.__set_rate(styling['rate'])
+            self.__print_char_by_char(message['text'], styling['colour'], styling['font_style'], rate)
         print()
-
-    def __process_two(self, text, styling):
-        rate = self.__set_rate(styling['rate'])
-        self.__print_char_by_char(text, styling['colour'], styling['font_style'], rate)
 
     def __set_rate(self, rate):
         if self.dev:
