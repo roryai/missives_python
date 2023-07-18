@@ -28,17 +28,20 @@ class Missive:
                        location=record[4],
                        gathering=record[5])
 
-    def format_creation_time(self):
+    def display_missive(self):
+        return self.printer.process(self.__display_content())
+
+    def __format_creation_time(self):
         datetime_object = datetime.strptime(self.creation_time, '%Y-%m-%d %H:%M:%S')
         return datetime_object.strftime('%a, %d %b %Y %H:%M')
 
-    def format_location(self):
+    def __format_location(self):
         return f'Milky Way, Sol, Earth, {self.location}'
 
-    def display_content(self):
+    def __display_content(self):
         return [
             {'text': '\nTime recorded:      ',      'styling': styles.MISSIVE_KEY},
-            {'text': self.format_creation_time(),   'styling': styles.MISSIVE_DEFAULT_VALUE},
+            {'text': self.__format_creation_time(), 'styling': styles.MISSIVE_DEFAULT_VALUE},
             {'text': '\nRecording location: ',      'styling': styles.MISSIVE_KEY},
             {'text': self.location,                 'styling': styles.MISSIVE_DEFAULT_VALUE},
             {'text': '\nGathering:          ',      'styling': styles.MISSIVE_KEY},
@@ -48,6 +51,3 @@ class Missive:
             {'text': '\nMissive: ',                 'styling': styles.MISSIVE_KEY},
             {'text': self.message,                  'styling': styles.MISSIVE_MESSAGE}
         ]
-
-    def display_missive(self):
-        return self.printer.process(self.display_content())

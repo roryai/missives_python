@@ -5,11 +5,11 @@ from sqlite3 import Error
 class DatabaseController:
 
     def __init__(self, table_init_statement=None, path="../missives.db"):
-        self.connection = self.connect_to_db(path)
+        self.connection = self.__connect_to_db(path)
         if table_init_statement:
             self.execute_query(table_init_statement, [])
 
-    def connect_to_db(self, path):
+    def __connect_to_db(self, path):
         connection = None
         try:
             connection = sqlite3.connect(path)

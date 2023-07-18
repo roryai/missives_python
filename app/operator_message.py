@@ -5,12 +5,12 @@ from app.printer import Printer
 class OperatorMessage:
 
     def __init__(self, command, printer=Printer()):
-        printer.process(self.selector(command))
+        printer.process(self.__selector(command))
 
-    def selector(self, command):
+    def __selector(self, command):
         match command:
             case 'read_write_learn':
-                return self.read_write_learn()
+                return self.__read_write_learn()
 
             case 'what_is_your_name':
                 return [{'text': 'What is your name?', 'styling': styles.DEFAULT}]
@@ -20,34 +20,34 @@ class OperatorMessage:
                          'styling': styles.DEFAULT}]
 
             case 'confirm_submission':
-                return self.confirm_submission()
+                return self.__confirm_submission()
 
             case 'input_not_recognised':
-                return self.input_not_recognised()
+                return self.__input_not_recognised()
 
             case 'name_only_letters':
-                return self.name_only_letters()
+                return self.__name_only_letters()
 
             case 'message_too_short':
-                return self.message_too_short()
+                return self.__message_too_short()
 
             case 'message_partially_recorded':
-                return self.message_partially_recorded()
+                return self.__message_partially_recorded()
 
             case 'missive_recorded':
                 return [{'text': 'Your missive has been added to the temporal archive, thank you.',
                          'styling': styles.SUCCESS}]
 
             case 'enter_to_continue':
-                return self.hit_enter_to_continue()
+                return self.__hit_enter_to_continue()
 
             case 'display_another_missive_or_continue':
-                return self.display_another_missive_or_continue()
+                return self.__display_another_missive_or_continue()
 
             case 'time_machine_info':
-                return self.time_machine_info()
+                return self.__time_machine_info()
 
-    def read_write_learn(self):
+    def __read_write_learn(self):
         return [
             {'text': 'Would you like to write a missive, read a missive, or learn more about '
              'this time machine?',
@@ -63,7 +63,7 @@ class OperatorMessage:
             {'text': '.',                           'styling': styles.DEFAULT},
         ]
 
-    def confirm_submission(self):
+    def __confirm_submission(self):
         return [
             {'text': 'Would you like to submit your message, or start again?',
              'styling': styles.DEFAULT},
@@ -78,14 +78,14 @@ class OperatorMessage:
             {'text': ' to start again.',                    'styling': styles.DEFAULT},
         ]
 
-    def input_not_recognised(self):
+    def __input_not_recognised(self):
         return [
             {'text': '⚠️', 'styling': styles.WARNING_SIGN},
             {'text': ' Input not recognised, please try again.', 'styling': styles.WARNING_BODY},
             {'text': '⚠️', 'styling': styles.WARNING_SIGN}
         ]
     
-    def name_only_letters(self):
+    def __name_only_letters(self):
         return [
              {'text': '⚠️', 'styling': styles.WARNING_SIGN},
              {'text': 'Name must begin with letters and not be excessive in length.',
@@ -93,7 +93,7 @@ class OperatorMessage:
              {'text': '⚠️', 'styling': styles.WARNING_SIGN}
         ]
 
-    def message_too_short(self):
+    def __message_too_short(self):
         return [
             {'text': '⚠️', 'styling': styles.WARNING_SIGN},
             {'text': 'Your message is too short to be recorded. Please enter another message.',
@@ -101,7 +101,7 @@ class OperatorMessage:
             {'text': '⚠️', 'styling': styles.WARNING_SIGN}
         ]
 
-    def message_partially_recorded(self):
+    def __message_partially_recorded(self):
         return [
             {'text': '⚠️', 'styling': styles.WARNING_SIGN},
             {'text': 'Only the first 1000 characters of your message were recorded.',
@@ -109,14 +109,14 @@ class OperatorMessage:
             {'text': '⚠️', 'styling': styles.WARNING_SIGN}
         ]
 
-    def hit_enter_to_continue(self):
+    def __hit_enter_to_continue(self):
         return [
             {'text': 'Hit ',            'styling': styles.DEFAULT},
             {'text': 'enter',           'styling': styles.HIGHLIGHT},
             {'text': ' to continue.',   'styling': styles.DEFAULT}
         ]
 
-    def display_another_missive_or_continue(self):
+    def __display_another_missive_or_continue(self):
         return [
             {'text': '\n\nType ',                           'styling': styles.DEFAULT},
             {'text': 'r',                                   'styling': styles.HIGHLIGHT},
@@ -127,7 +127,7 @@ class OperatorMessage:
             {'text': ' to return to menu.',                 'styling': styles.DEFAULT}
         ]
 
-    def time_machine_info(self):
+    def __time_machine_info(self):
         return [{'text': """
     This is a time machine that allows you to send messages to people in the future.
     
