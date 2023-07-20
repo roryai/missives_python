@@ -1,8 +1,8 @@
 class MissiveGateway:
 
     def __init__(self, db_controller, db_path):
-        self.db_controller = db_controller(table_init_statement=self.create_missives_table_statement(),
-                                           path=db_path)
+        self.db_controller = db_controller(path=db_path,
+                                           table_init_statement=self.create_missives_table_statement())
 
     def create_missives_table_statement(self):
         return """

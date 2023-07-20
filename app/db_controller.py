@@ -4,7 +4,7 @@ from sqlite3 import Error
 
 class DatabaseController:
 
-    def __init__(self, table_init_statement=None, path="../missives.db"):
+    def __init__(self, path, table_init_statement=None):
         self.connection = self.__connect_to_db(path)
         if table_init_statement:
             self.execute_query(table_init_statement, [])
