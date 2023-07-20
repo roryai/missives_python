@@ -16,6 +16,7 @@ class Controller:
 
     def flow_menu(self, error_message=None):
         self.__pre_flow(error_message)
+        OperatorMessage('read_write_learn')
         match input(INPUT_PROMPT):
             case 'w':
                 missive = self.__get_input()
@@ -32,23 +33,11 @@ class Controller:
         self.__clear_terminal_window()
         if error_message:
             OperatorMessage(error_message)
-        OperatorMessage('read_write_learn')
 
     def __get_input(self):
         name = self.__get_name()
         message = self.__get_message()
         return self.__confirm_submission(name, message)
-
-    def __confirm_submission(self, name, message):
-        OperatorMessage('confirm_submission')
-        confirmation = input(INPUT_PROMPT)
-        if confirmation == 'y':
-            return Missive(name, message)
-        elif confirmation == 'n':
-            return self.__get_input()
-        else:
-            OperatorMessage('input_not_recognised')
-            return self.__confirm_submission(name, message)
 
     def __get_name(self):
         OperatorMessage('what_is_your_name')
@@ -66,6 +55,17 @@ class Controller:
             OperatorMessage('message_too_short')
             return self.__get_message()
         return message
+
+    def __confirm_submission(self, name, message):
+        OperatorMessage('confirm_submission')
+        confirmation = input(INPUT_PROMPT)
+        if confirmation == 'y':
+            return Missive(name, message)
+        elif confirmation == 'n':
+            return self.__get_input()
+        else:
+            OperatorMessage('input_not_recognised')
+            return self.__confirm_submission(name, message)
 
     def __record_missive(self, missive):
         if self.verifier.check_message_max_length(missive.message) is False:
