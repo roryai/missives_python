@@ -47,6 +47,9 @@ class OperatorMessage:
             case 'time_machine_info':
                 return self.__time_machine_info()
 
+            case 'no_records_found':
+                return self.__no_records_found()
+
     def __read_write_learn(self):
         return [
             {'text': 'Would you like to write a missive, read a missive, or learn more about '
@@ -105,6 +108,14 @@ class OperatorMessage:
         return [
             {'text': '⚠️', 'styling': styles.WARNING_SIGN},
             {'text': 'Only the first 1000 characters of your message were recorded.',
+             'styling': styles.WARNING_BODY},
+            {'text': '⚠️', 'styling': styles.WARNING_SIGN}
+        ]
+
+    def __no_records_found(self):
+        return [
+            {'text': '⚠️', 'styling': styles.WARNING_SIGN},
+            {'text': 'No missives found; temporal archive empty.',
              'styling': styles.WARNING_BODY},
             {'text': '⚠️', 'styling': styles.WARNING_SIGN}
         ]

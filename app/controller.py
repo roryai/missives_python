@@ -77,10 +77,13 @@ class Controller:
 
     def __display_random_missive(self):
         record = self.missive_gateway.select_one_random_missive()
-        missive = Missive.init_from_record(record)
-        self.__clear_terminal_window()
-        missive.display_missive()
-        self.__display_another_missive_or_continue()
+        if record:
+            missive = Missive.init_from_record(record)
+            self.__clear_terminal_window()
+            missive.display_missive()
+            self.__display_another_missive_or_continue()
+        else:
+            self.__no_records_found()
 
     def __display_time_machine_info(self):
         self.__clear_terminal_window()
@@ -100,3 +103,7 @@ class Controller:
             self.__display_random_missive()
         else:
             self.flow_menu()
+
+    def __no_records_found(self):
+        OperatorMessage('no_records_found')
+        self.__enter_to_continue()
