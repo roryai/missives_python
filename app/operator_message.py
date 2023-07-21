@@ -50,6 +50,9 @@ class OperatorMessage:
             case 'no_records_found':
                 return self.__no_records_found()
 
+            case 'db_operation_failed':
+                return self.__db_operation_failed()
+
     def __read_write_learn(self):
         return [
             {'text': 'Would you like to write a missive, read a missive, or learn more about '
@@ -116,6 +119,14 @@ class OperatorMessage:
         return [
             {'text': '⚠️', 'styling': styles.WARNING_SIGN},
             {'text': 'No missives found; temporal archive empty.',
+             'styling': styles.WARNING_BODY},
+            {'text': '⚠️', 'styling': styles.WARNING_SIGN}
+        ]
+
+    def __db_operation_failed(self):
+        return [
+            {'text': '⚠️', 'styling': styles.WARNING_SIGN},
+            {'text': 'Database inaccessible, please try again.',
              'styling': styles.WARNING_BODY},
             {'text': '⚠️', 'styling': styles.WARNING_SIGN}
         ]

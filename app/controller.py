@@ -71,8 +71,11 @@ class Controller:
         if self.verifier.check_message_max_length(missive.message) is False:
             OperatorMessage('message_partially_recorded')
             missive.message = missive.message[0:1000]
-        self.missive_gateway.insert_missive(missive)
-        OperatorMessage('missive_recorded')  # TODO make this dependent on success
+        result = self.missive_gateway.insert_missive(missive)
+        if result:
+            OperatorMessage('missive_recorded')
+        else:
+            self.__db_operation_failed()
         self.__enter_to_continue()
 
     def __display_random_missive(self):
@@ -106,4 +109,8 @@ class Controller:
 
     def __no_records_found(self):
         OperatorMessage('no_records_found')
+        self.__enter_to_continue()
+
+    def __db_operation_failed(self):
+        OperatorMessage('db_operation_failed')
         self.__enter_to_continue()

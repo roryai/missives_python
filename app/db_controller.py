@@ -23,8 +23,10 @@ class DatabaseController:
         try:
             cursor.execute(query, values)
             self.connection.commit()
+            return True
         except Error as e:
             print(f"Error '{e}' occurred with \nQuery {query}\nValues: {values}")
+            return False
 
     def execute_read_query(self, query):
         cursor = self.connection.cursor()

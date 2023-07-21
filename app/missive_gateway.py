@@ -24,7 +24,7 @@ class MissiveGateway:
             (?, ?, ?, ?, ?);
          """
         values = [missive.name, missive.message, missive.creation_time, missive.location, missive.gathering]
-        self.db_controller.execute_query(statement, values)
+        return self.db_controller.execute_query(statement, values)
 
     def select_one_random_missive(self):
         statement = """
