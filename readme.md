@@ -4,7 +4,7 @@
 ### About
 This is an art project that I created to share with my friends.
 
-I made this for fun, as such it is not a portfolio piece. See [transfer_wizard_redux](https://github.com/roryai/transfer_wizard_redux) for a better demonstration of my capabilities.
+I made this for fun; it is not a portfolio piece. See [transfer_wizard_redux](https://github.com/roryai/transfer_wizard_redux) for a better demonstration of my capabilities.
 
 It is a CLI app, and is essentially a guest book that lets you leave a message that can be read back by other users.
 
